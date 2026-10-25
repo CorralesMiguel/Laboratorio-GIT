@@ -1,0 +1,110 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <iomanip>
+
+using namespace std;
+
+struct Conductor {
+    string nombre;
+    string licencia;
+    string fecha;
+};
+
+string obtenerMesTexto(string mesNum) {
+    if (mesNum == "01") return "enero";
+    if (mesNum == "02") return "febrero";
+    if (mesNum == "03") return "marzo";
+    if (mesNum == "04") return "abril";
+    if (mesNum == "05") return "mayo";
+    if (mesNum == "06") return "junio";
+    if (mesNum == "07") return "julio";
+    if (mesNum == "08") return "agosto";
+    if (mesNum == "09") return "septiembre";
+    if (mesNum == "10") return "octubre";
+    if (mesNum == "11") return "noviembre";
+    if (mesNum == "12") return "diciembre";
+    return "";
+}
+
+int main(){
+  ifstream nombre_Archivo ("/workspaces/Laboratorio-GIT/input/datos_conductores.csv");
+  ofstream archivo_Salida("/workspaces/Laboratorio-GIT/input/lista_datos_conductores.txt");
+
+    vector<Conductor> listaConductores;
+    string linea;
+
+     if(nombre_Archivo.is_open()){
+      string linea;
+
+      while (getline(nombre_Archivo, linea)) {
+        if (linea.empty()) {
+            continue; 
+        }
+
+        
+       stringstream ss(linea);
+            string Nombre, Licencia, Fecha;
+
+            if (getline(ss, Nombre, ';') && 
+                getline(ss, Licencia, ';') && 
+                getline(ss, Fecha)) {
+                
+                Conductor c;
+                c.nombre = Nombre;
+                c.licencia = Licencia;
+                c.fecha = Fecha;
+
+                listaConductores.push_back(c);
+            }
+        }
+        nombre_Archivo.close();
+
+        if (archivo_Salida.is_open()) {
+            archivo_Salida << "--- SALIDA GENERADA ---\n";
+            cout << "\n--- SALIDA GENERADA ---\n";
+
+            for (size_t i = 0; i < listaConductores.size(); i++) {
+                Conductor c = listaConductores[i];
+
+                archivo_Salida << c.nombre << "\n";
+                cout << c.nombre << endl;
+
+                string tipoLicencia = "";
+                if (!c.licencia.empty()) {
+                    char letraInicial = c.licencia[0];
+                    if (letraInicial == 'A') {
+                        tipoLicencia = "Motocicletas";
+                    } else if (letraInicial == 'B') {
+                        tipoLicencia = "Automoviles Particulares";
+                    } else if (letraInicial == 'C') {
+                        tipoLicencia = "Servicio Publico";
+                    }
+                }
+
+                archivo_Salida << "\t- Tipo de Licencia: " << tipoLicencia << " (" << c.licencia << ")\n";
+                cout << "\t- Tipo de Licencia: " << tipoLicencia << " (" << c.licencia << ")" << endl;
+
+                if (c.fecha.length() >= 8) {
+                    string dia = c.fecha.substr(0, 2);
+                    string mesNum = c.fecha.substr(2, 2);
+                    string anio = c.fecha.substr(4, 4);
+                    string mesTexto = obtenerMesTexto(mesNum);
+
+                    archivo_Salida << "\t- Fecha de Vencimiento: " << dia << " de " << mesTexto << " de " << anio << "\n";
+                    cout << "\t- Fecha de Vencimiento: " << dia << " de " << mesTexto << " de " << anio << endl;
+                }
+            }
+            archivo_Salida.close();
+        } else {
+            cout << "No se pudo crear el archivo correctamente" << endl;
+        }
+
+    } else {
+        cout << "No se pudo abrir el archivo de entrada" << endl;
+    }
+
+    return 0;
+}
