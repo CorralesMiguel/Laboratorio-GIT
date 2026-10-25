@@ -1,0 +1,19 @@
+--- SALIDA GENERADA ---
+Ana Maria Gomez Rios
+	- Tipo de Licencia: Motocicletas (A1)
+	- Fecha de Vencimiento: 12 de mayo de 2029
+Luis Fernando Perez Rojas
+	- Tipo de Licencia: Automoviles Particulares (B2)
+	- Fecha de Vencimiento: 25 de octubre de 2030
+Diana Marcela Torres Mejia
+	- Tipo de Licencia: Servicio Publico (C2)
+	- Fecha de Vencimiento: 01 de enero de 2028
+Jorge Eliecer Gaitan Parra
+	- Tipo de Licencia: Motocicletas (A2)
+	- Fecha de Vencimiento: 30 de septiembre de 2031
+Claudia Patricia Silva Duran
+	- Tipo de Licencia: Automoviles Particulares (B1)
+	- Fecha de Vencimiento: 14 de febrero de 2027
+Hector Fabio Morales Soto
+	- Tipo de Licencia: Servicio Publico (C1)
+	- Fecha de Vencimiento: 18 de julio de 2026

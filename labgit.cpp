@@ -63,8 +63,8 @@ int main(){
         nombre_Archivo.close();
 
         if (archivo_Salida.is_open()) {
-            archivo_Salida << "--- SALIDA GENERADA ---\n";
-            cout << "\n--- SALIDA GENERADA ---\n";
+            archivo_Salida << "--- LISTA DE CONDUCTORES ---\n";
+            cout << "\n--- LISTA DE CONDUCTORES ---\n";
 
             for (size_t i = 0; i < listaConductores.size(); i++) {
                 Conductor c = listaConductores[i];
